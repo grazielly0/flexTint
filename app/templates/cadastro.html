@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+  <form action="/cadastrarUsuario" method="POST">
+    <label>CPF:</label>
+    <input type="text" name="cpf" id="cpf"/><br><br>
+
+     <label>Nome:</label>
+    <input type="text" name="nome" id="nome"/><br><br>
+
+     <label>Telefone:</label>
+    <input type="text" name="telefone" id="telefone"/><br><br>
+
+     <label>Endereço:</label>
+    <input type="text" name="endereco" id="endereco"/><br><br>
+
+
+
+      <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="Limpeza de Pele" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+        Limpeza de Pele
+  </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="Massagem  Facial Relaxante" id="flexCheckChecked1" checked>
+      <label class="form-check-label" for="flexCheckChecked">
+        Massagem Facial Relaxante
+      </label>
+    </div>
+
+
+
+      <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="Massagem Relaxante" id="flexCheckDefault2">
+      <label class="form-check-label" for="flexCheckDefault">
+        Massagem Relaxante
+  </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" checked>
+      <label class="form-check-label" for="flexCheckChecked">
+        Checked checkbox
+      </label>
+    </div>
+
+
+      <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4">
+      <label class="form-check-label" for="flexCheckDefault">
+        Default checkbox
+  </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+      <label class="form-check-label" for="flexCheckChecked">
+        Checked checkbox
+      </label>
+    </div>
+       <button class="btn btn-outline-primary">Cadastrar</button><br><br>
+  </form>
+
+     <button class="btn btn-outline-primary">Excluir</button><br><br>
+
+
+
+{% endblock %}
