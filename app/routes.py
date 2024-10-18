@@ -15,6 +15,18 @@ def contato():
 @app.route('/cadastro')
 def cadastro():
     return render_template('cadastro.html', titulo="Cadastrar")
+
+@app.route('/exxcluir')
+def exxcluir():
+    return render_template('exxcluir.html', titulo="Exxcluir")
+
+@app.route('/atualizar')
+def atualizar():
+    return render_template('atualizar.html', titulo="atualizar")
+
+
+
+
 @app.route('/cadastrarUsuario', methods=['POST'])
 def cadastrarUsuario():
     try:
@@ -22,7 +34,8 @@ def cadastrarUsuario():
         nome   = request.form.get("nome")
         telefone    = request.form.get("telefone")
         endereco    = request.form.get("endereco")
-        dados   = {'cpf': cpf, "nome": nome, "telefone": telefone, "endereco": endereco}
+        pagamento   = request.form.get("pagamento")
+        dados   = {'cpf': cpf, "nome": nome, "telefone": telefone, "endereco": endereco, "pagamento":pagamento}
         requisitos = requests.post(f'{link}/cadastro/.json', data = json.dumps(dados))
         return 'Cadastrado com sucesso!'
     except Exception as e:
@@ -51,19 +64,43 @@ def listarIndividual():
     except Exception as e:
         return f'Ocorreu um erro\n +{e}'
 
-@app.route('/atualizar')
-def atualizar():
-    try:
-        dados = {"nome":"joão"}
-        requisicao = requests.patch(f'{link}/cadastro/-O8missPyHgVA9hdaqY1/.json', data=json.dumps(dados))
-        return  "Atualizado com sucesso"
-    except Exception as e:
-        return f'Algo deu errado\n +{e}'
 
-@app.route('/excluir')
+
+
+@app.route('/atualize',methods=['POST'])
+def atualize():
+    try:
+        requisicao = requests.get(f'{link}/cadastro/.json')
+        dicionario = requisicao.json()
+        cpf = request.form.get("cpf")
+        nome = request.form.get("nome")
+        dados = {'cpf': cpf, 'nome': nome}
+        for codigo in dicionario:
+            chave = dicionario[codigo]['cpf']
+            if chave == cpf:
+                requisicao = requests.patch(f'{link}/cadastro/{codigo}/.json', data=json.dumps(dados))
+                return 'Atualizado com sucesso!'
+    except Exception as e:
+        return f'Algo deu errado\n + {e}'
+
+
+
+
+@app.route('/excluir', methods=['POST'])
 def excluir():
     try:
-        requisicao = requests.delete(f'{link}/cadastro/-O8mjdTXWn9jg_k24Lld/.json')
+
+        requisicao = requests.get(f'{link}/cadastro/.json')
+        dicionario = requisicao.json()
+        idCadastro = ""
+        cpf = request.form.get("cpf")
+        nome = request.form.get("nome")
+
+        for codigo in dicionario:
+            chave = dicionario[codigo]['cpf']
+
+
+        requisicao = requests.delete(f'{link}/cadastro/{idCadastro}/.json')
         return "Excluido com sucesso!"
     except Exception as e:
         return f'Algo deu errado\n +{e}'

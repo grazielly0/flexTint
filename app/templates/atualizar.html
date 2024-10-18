@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-  <form class="form" action="/cadastrarUsuario" method="POST">
-    <h1>CADASTRO</h1>
-    <br><br><div class="botao">
-    <label>CPF:</label><input class="botton" type="text" name="cpf" id="cpf"/> <br> <br>
+  <div class="atualize">
+  <form class="form" action="/atualize" method="POST">
 
-    <label>Nome:</label><input class="botton" type="text" name="nome" id="nome"/> <br> <br>
+    <h4>Atualizar</h4>
+    <label>CPF:</label><input class="botton" type="text" name="cpf" id="cpf"/><br><br>
+
+    <label>Nome:</label><input class="botton" type="text" name="nome" id="nome"/><br><br>
 
     <label>Telefone:</label><input class="botton" type="text" name="telefone" id="telefone"/><br> <br>
-    
+
     <label>Endereço:</label><input class="botton" type="text" name="endereco" id="endereco"/> <br> <br>
 
     <h2>Formas de Pagamento</h2><br><br>
@@ -38,14 +39,17 @@
 
 
   </form><br><br><br><br>
-  <button class="btn btn-outline-primary">Cadastrar</button>
 
   <a href="/exxcluir"><button type="button" class="btn btn-outline-primary" >Excluir</button></a>
 
   <a href="/index"><button type="button" class="btn btn-outline-primary" >Voltar</button></a>
 
+    <a href="/atualize"><button type="button" class="btn btn-outline-primary" >Atualizar</button></a>
 
 
+  </div>
+
+  </form>
 
 
    {% endblock %}
